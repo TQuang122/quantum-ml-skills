@@ -32,6 +32,12 @@ If you prefer not to call the shell installer directly, see:
 
 - `examples/use-with-opencode.md`
 
+You can validate an install with:
+
+```bash
+python install/doctor_opencode.py --path .opencode/skills
+```
+
 ## Skills
 
 | Skill | Description |
