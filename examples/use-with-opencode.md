@@ -1,92 +1,83 @@
-# Using Quantum ML Skills with OpenCode
+# OpenCode Usage
 
-This guide shows the fastest way to use the QML skill library with OpenCode after cloning the repository.
+This is the fastest way to use the repository with OpenCode.
 
-## 1. Clone the repository
+## Install
 
-```bash
-git clone <your-repo-url> qml-skills
-cd qml-skills
-```
-
-## 2. Install skills into a local project
-
-If you want the skills available only for one project:
+### Local project
 
 ```bash
-python install/install_opencode.py --project-root /path/to/your-project
+bash install/install_opencode.sh --project-root .
 ```
 
-This installs skills into:
+### Global
+
+```bash
+bash install/install_opencode.sh --global
+```
+
+Global installs go into:
 
 ```text
-/path/to/your-project/.opencode/skills/
+~/.config/opencode/skills/qml-skills/
 ```
 
-## 3. Install skills globally
-
-If you want the skills available across projects:
+## Single skill
 
 ```bash
-python install/install_opencode.py --global
+bash install/install_opencode.sh --project-root . --skill qml-pytorch-training
 ```
 
-This installs skills into:
-
-```text
-~/.config/opencode/skills/
-```
-
-## 4. Install only one skill
-
-Example:
+## Dry run
 
 ```bash
-python install/install_opencode.py --project-root /path/to/your-project --skill qml-pytorch-training
+bash install/install_opencode.sh --project-root . --dry-run
 ```
 
-## 5. Export without installing
+## Skills
 
-If you want to inspect generated output first:
+| Skill | Description |
+| --- | --- |
+| `qml-foundations` | Frame QML problems before implementation. |
+| `qml-pytorch-router` | Route ambiguous PennyLane + PyTorch QML requests. |
+| `pennylane-qnn` | Build and refactor PennyLane-first hybrid quantum models. |
+| `qml-pytorch-interface` | Clean PyTorch boundaries around PennyLane models. |
+| `qml-pytorch-training` | Build reusable PennyLane + PyTorch training workflows. |
+| `qml-pytorch-performance-patterns` | Improve performance for PyTorch-based QML workloads. |
+| `pennylane-qiskit-backends` | Add Qiskit-backed execution while keeping PennyLane as the authoring layer. |
+| `qiskit-machine-learning-interop` | Explore native Qiskit Machine Learning abstractions. |
+| `qml-cross-framework-benchmarking` | Compare QML branches and backends fairly. |
+
+## Manual fallback
+
+If you do not want to use the installer, export skills first and copy the generated output manually.
 
 ```bash
 python skills/qml/exporters/export_opencode.py
 ```
 
-Output is generated under:
+Generated output goes to:
 
 ```text
 skills/qml/exports/opencode/
 ```
 
-## 6. What gets exported
+## Suggested usage flow
 
-For each skill, the current exporter maps:
+1. check `skills/qml/REQUEST_PATTERNS.md`
+2. use `skills/qml/ROUTING.md` if the task is ambiguous
+3. start with `qml-pytorch-router` when multiple skills overlap
 
-- source `SKILL.md` → exported `SKILL.md`
-- source `prompts/` → exported `references/prompts/`
-- source `examples/` → exported `references/examples/`
-
-## 7. Suggested usage flow
-
-1. use `REQUEST_PATTERNS.md` to match the user request quickly
-2. use `ROUTING.md` if the task is ambiguous
-3. use `qml-pytorch-router` if multiple skills overlap
-4. apply the selected skill in your OpenCode workflow
-
-## 8. Good starting skills
-
-If you are new to the library, start with:
+## Recommended starting skills
 
 - `qml-foundations`
 - `qml-pytorch-router`
 - `pennylane-qnn`
 - `qml-pytorch-training`
 
-## 9. Related docs
+## Related docs
 
 - `README.md`
 - `skills/qml/README.md`
 - `skills/qml/REQUEST_PATTERNS.md`
 - `skills/qml/ROUTING.md`
-- `skills/qml/STARTER_WORKFLOW.md`
