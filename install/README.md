@@ -6,7 +6,7 @@ This directory contains end-user installation entrypoints for supported platform
 
 - `install_opencode.sh` — shell wrapper that delegates to the Python installer so users do not need to call Python directly
 - `install_opencode.py` — installs exported skills into a project-local or global OpenCode skills directory
-- `doctor_opencode.py` — inspects an OpenCode skills directory and reports installed skill structure
+- `doctor_opencode.py` — inspects an OpenCode skills directory and reports installed skill structure, frontmatter validity, expected skill count, and namespace consistency
 
 Global installs now default to a namespaced path:
 
@@ -35,3 +35,15 @@ python install/doctor_opencode.py --path ~/.config/opencode/skills/qml-skills
 If a user does not want to run the installer, they can still export and copy generated skill folders manually. See:
 
 - `examples/use-with-opencode.md`
+
+## What doctor checks now
+
+- `SKILL.md` exists
+- prompt reference exists
+- example reference exists
+- YAML frontmatter exists
+- required metadata keys are present
+- frontmatter `name` matches the folder name
+- `platforms` includes `opencode`
+- installed skill count matches the expected library count
+- checked path matches the namespaced global install root when applicable
