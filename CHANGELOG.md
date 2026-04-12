@@ -2,11 +2,21 @@
 
 ## Unreleased
 
+## v0.1.1
+
 ### Changed
 
 - safer global OpenCode install path using `~/.config/opencode/skills/qml-skills/`
 - shell installer entrypoint via `install/install_opencode.sh`
 - GitHub collaboration scaffolding under `.github/`
+
+### Added
+
+- stronger `doctor_opencode.py` validation for frontmatter, expected skill count, and namespace checks
+- `qml-debugging`
+- `qml-reproducibility`
+- `qml-paper-replication`
+- `skills/qml/evals/` with routing, implementation, and research gold tasks
 
 ## v0.1.0
 
