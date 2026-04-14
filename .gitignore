@@ -18,6 +18,9 @@ dist/
 # Local Claude marketplace installs
 .claude/marketplaces/
 
+# Local Claude Code plugin state
+.claude/settings.local.json
+
 # Generated exports
 skills/qml/exports/opencode/*
 !skills/qml/exports/opencode/README.md

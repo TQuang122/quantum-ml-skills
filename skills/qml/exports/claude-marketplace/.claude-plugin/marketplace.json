@@ -3,6 +3,9 @@
   "owner": {
     "name": "Quantum ML Skills"
   },
+  "metadata": {
+    "description": "Local Claude Code marketplace for the Quantum ML skill library."
+  },
   "plugins": [
     {
       "name": "qml-common",

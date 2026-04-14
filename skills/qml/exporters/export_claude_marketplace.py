@@ -13,6 +13,9 @@ SKILLS_ROOT = ROOT
 EXPORT_ROOT = ROOT / "exports" / "claude-marketplace"
 MARKETPLACE_NAME = "qml-skills"
 MARKETPLACE_VERSION = "0.1.1"
+MARKETPLACE_DESCRIPTION = (
+    "Local Claude Code marketplace for the Quantum ML skill library."
+)
 
 
 @dataclass(slots=True)
@@ -256,6 +259,7 @@ def write_marketplace_manifest(
     payload = {
         "name": MARKETPLACE_NAME,
         "owner": {"name": "Quantum ML Skills"},
+        "metadata": {"description": MARKETPLACE_DESCRIPTION},
         "plugins": [
             {
                 "name": bundle.name,
