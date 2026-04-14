@@ -23,6 +23,7 @@ skills/
     ├── TEMPLATE.md
     ├── exporters/
     │   ├── README.md
+    │   ├── export_claude_marketplace.py
     │   ├── export_opencode.py
     │   └── export_claude_code.py
     ├── evals/
@@ -43,6 +44,7 @@ skills/
     │       ├── paper-replication-gold-task.md
     │       └── reproducibility-gold-task.md
     ├── exports/
+    │   ├── claude-marketplace/
     │   ├── opencode/
     │   │   └── README.md
     │   └── claude-code/
@@ -302,6 +304,7 @@ These fields are treated as source metadata and can be translated later into Ope
 - `exporters/README.md` — overview of export utilities
 - `exporters/export_opencode.py` — initial OpenCode exporter scaffold
 - `exporters/export_claude_code.py` — Claude Code exporter scaffold
+- `exporters/export_claude_marketplace.py` — local Claude marketplace exporter scaffold
 - `exports/opencode/README.md` — generated-output layout for OpenCode exports
 
 Claude Code compatibility at the repository level is anchored by:
@@ -309,6 +312,7 @@ Claude Code compatibility at the repository level is anchored by:
 - root `CLAUDE.md`
 - `.claude/settings.json`
 - generated output under `exports/claude-code/`
+- generated local marketplace output under `exports/claude-marketplace/`
 
 Current OpenCode exporter features:
 

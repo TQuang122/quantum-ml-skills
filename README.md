@@ -47,11 +47,34 @@ Claude Code support is provided through:
 - root `CLAUDE.md`
 - project `.claude/settings.json`
 - generated exports under `skills/qml/exports/claude-code/`
+- a local plugin-style marketplace under `skills/qml/exports/claude-marketplace/`
 
 To generate Claude-compatible output:
 
 ```bash
 python skills/qml/exporters/export_claude_code.py
+```
+
+To generate a local Claude marketplace:
+
+```bash
+bash install/install_claude_marketplace.sh --project-root .
+```
+
+Then add it inside Claude Code:
+
+```text
+/plugin marketplace add ./.claude/marketplaces/qml-skills
+```
+
+Recommended install order:
+
+```text
+/plugin install qml-common@qml-skills
+/plugin install qml-core@qml-skills
+/plugin install qml-backends@qml-skills
+/plugin install qml-evaluation@qml-skills
+/plugin install qml-research@qml-skills
 ```
 
 The canonical source of truth remains:
@@ -82,6 +105,7 @@ skills/qml/
 - `skills/qml/STARTER_WORKFLOW.md`
 - `skills/qml/EXPORT_STRATEGY.md`
 - `examples/use-with-opencode.md`
+- `examples/use-with-claude-code.md`
 - `CLAUDE.md`
 - `CONTRIBUTING.md`
 

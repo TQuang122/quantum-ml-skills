@@ -15,6 +15,9 @@ dist/
 # Local OpenCode installs
 .opencode/skills/
 
+# Local Claude marketplace installs
+.claude/marketplaces/
+
 # Generated exports
 skills/qml/exports/opencode/*
 !skills/qml/exports/opencode/README.md
