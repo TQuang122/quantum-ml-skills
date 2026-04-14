@@ -1,0 +1,8 @@
+{
+  "name": "qml-research",
+  "description": "Research debugging and paper replication skills for Claude Code.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Quantum ML Skills"
+  }
+}

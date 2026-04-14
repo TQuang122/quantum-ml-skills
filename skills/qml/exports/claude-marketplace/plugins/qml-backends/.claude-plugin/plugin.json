@@ -1,0 +1,8 @@
+{
+  "name": "qml-backends",
+  "description": "Backend and Qiskit interop skills for Claude Code.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Quantum ML Skills"
+  }
+}

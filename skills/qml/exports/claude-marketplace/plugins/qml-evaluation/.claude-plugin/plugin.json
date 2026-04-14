@@ -1,0 +1,8 @@
+{
+  "name": "qml-evaluation",
+  "description": "Benchmarking and reproducibility skills for Claude Code.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Quantum ML Skills"
+  }
+}
