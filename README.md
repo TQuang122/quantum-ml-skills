@@ -1,5 +1,7 @@
 # Quantum ML Skills
 
+![Qubit Animation](./qubit.gif)
+
 Reusable QML skills with PennyLane-first design, PyTorch-first training, and OpenCode-ready installation.
 
 These skills are designed for OpenCode first, with the source library structured so it can later be exported to other skill-compatible agent systems.
