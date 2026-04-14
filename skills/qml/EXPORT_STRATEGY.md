@@ -89,13 +89,34 @@ OpenCode is the best first export target because this workspace already contains
 
 ### Target assumption
 
-Claude Code appears to fit the same broad `SKILL.md`/Agent Skills family, but may rely on Claude-specific discovery or installation paths.
+Claude Code supports both standalone skills and plugin-based distribution. For this repository, the preferred local packaging layer is a generated local marketplace built from the same source library.
 
 ### Export approach
 
 - keep the same normalized frontmatter
 - export into Claude-compatible skill directories later
+- support a local marketplace layout for namespaced Claude plugin bundles
 - add Claude-specific metadata only in the export layer if required
+
+### Local marketplace packaging
+
+The minimal local plugin-style packaging model for this repo is:
+
+- keep `skills/qml/` as the canonical source
+- generate a local marketplace under `skills/qml/exports/claude-marketplace/`
+- generate plugin manifests under `.claude-plugin/plugin.json`
+- generate a marketplace catalog under `.claude-plugin/marketplace.json`
+- group skills into a small number of installable plugin bundles rather than one plugin per skill
+
+Recommended plugin bundles:
+
+- `qml-common` → `qml-foundations`, `qml-pytorch-router`
+- `qml-core` → `pennylane-qnn`, `qml-pytorch-interface`, `qml-pytorch-training`, `qml-pytorch-performance-patterns`
+- `qml-backends` → `pennylane-qiskit-backends`, `qiskit-machine-learning-interop`
+- `qml-evaluation` → `qml-cross-framework-benchmarking`, `qml-reproducibility`
+- `qml-research` → `qml-debugging`, `qml-paper-replication`
+
+This preserves a source-first model while creating a local install experience that feels close to marketplace usage inside Claude Code.
 
 ## Antigravity
 
@@ -118,10 +139,12 @@ skills/qml/
   exporters/
     export_opencode.py
     export_claude_code.py
+    export_claude_marketplace.py
     export_antigravity.py
   exports/
     opencode/
     claude-code/
+    claude-marketplace/
     antigravity/
 ```
 

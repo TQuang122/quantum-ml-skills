@@ -14,6 +14,7 @@ Exporters should read from the source library and write generated output into:
 
 - `export_opencode.py` — initial scaffold for exporting the QML skill library into an OpenCode-compatible structure
 - `export_claude_code.py` — exports the QML skill library into a Claude Code-compatible structure
+- `export_claude_marketplace.py` — exports the QML skill library into a local Claude Code marketplace with installable plugin bundles
 
 ## Current scope
 
@@ -41,6 +42,14 @@ The current `export_claude_code.py` supports:
 - install one skill with `--skill <name> --install-to <path>`
 - JSON summary output after execution
 
+The current `export_claude_marketplace.py` supports:
+
+- export all plugin bundles into `skills/qml/exports/claude-marketplace/`
+- export one plugin bundle with `--plugin <name>`
+- install all plugin bundles directly into a chosen local Claude marketplace path with `--install-to <path>`
+- install one plugin bundle with `--plugin <name> --install-to <path>`
+- JSON summary output after execution
+
 ## Examples
 
 OpenCode exporter:
@@ -59,6 +68,15 @@ python skills/qml/exporters/export_claude_code.py
 python skills/qml/exporters/export_claude_code.py --skill qml-pytorch-training
 python skills/qml/exporters/export_claude_code.py --install-to .claude/skills
 python skills/qml/exporters/export_claude_code.py --skill pennylane-qnn --install-to .claude/skills
+```
+
+Claude Code marketplace exporter:
+
+```bash
+python skills/qml/exporters/export_claude_marketplace.py
+python skills/qml/exporters/export_claude_marketplace.py --plugin qml-core
+python skills/qml/exporters/export_claude_marketplace.py --install-to .claude/marketplaces/qml-skills
+python skills/qml/exporters/export_claude_marketplace.py --plugin qml-research --install-to .claude/marketplaces/qml-skills
 ```
 
 It does **not** yet implement all possible platform-specific metadata remapping.
