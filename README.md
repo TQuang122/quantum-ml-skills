@@ -2,9 +2,9 @@
 
 ![Qubit Animation](./qubit.gif)
 
-Reusable QML skills with PennyLane-first design, PyTorch-first training, and OpenCode-ready installation.
+Reusable QML skills with PennyLane-first design, PyTorch-first training, and exporter-based compatibility for OpenCode and Claude Code.
 
-These skills are designed for OpenCode first, with the source library structured so it can later be exported to other skill-compatible agent systems.
+These skills are maintained from a single source library so they can support OpenCode today and Claude Code through a compatible export layer without splitting the docs or source structure.
 
 ## Installation
 
@@ -40,6 +40,26 @@ You can validate an install with:
 python install/doctor_opencode.py --path .opencode/skills
 ```
 
+### Claude Code
+
+Claude Code support is provided through:
+
+- root `CLAUDE.md`
+- project `.claude/settings.json`
+- generated exports under `skills/qml/exports/claude-code/`
+
+To generate Claude-compatible output:
+
+```bash
+python skills/qml/exporters/export_claude_code.py
+```
+
+The canonical source of truth remains:
+
+```text
+skills/qml/
+```
+
 ## Skills
 
 | Skill | Description |
@@ -62,6 +82,7 @@ python install/doctor_opencode.py --path .opencode/skills
 - `skills/qml/STARTER_WORKFLOW.md`
 - `skills/qml/EXPORT_STRATEGY.md`
 - `examples/use-with-opencode.md`
+- `CLAUDE.md`
 - `CONTRIBUTING.md`
 
 ## Release

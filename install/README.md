@@ -8,6 +8,14 @@ This directory contains end-user installation entrypoints for supported platform
 - `install_opencode.py` — installs exported skills into a project-local or global OpenCode skills directory
 - `doctor_opencode.py` — inspects an OpenCode skills directory and reports installed skill structure, frontmatter validity, expected skill count, and namespace consistency
 
+Claude Code compatibility is currently handled through:
+
+- root `CLAUDE.md`
+- project `.claude/settings.json`
+- generated exports from `skills/qml/exporters/export_claude_code.py`
+
+There is no dedicated Claude Code installer entrypoint yet.
+
 Global installs now default to a namespaced path:
 
 - `~/.config/opencode/skills/qml-skills/`
