@@ -8,6 +8,8 @@ Because the workspace currently has no existing `SKILL.md` files or local skill-
 
 That keeps the library versioned with the repo, easy to review, and easy to migrate later into another runtime-specific skill location if needed.
 
+This directory remains the canonical source-of-truth for both OpenCode and Claude Code support.
+
 ## Recommended directory structure
 
 ```text
@@ -21,7 +23,8 @@ skills/
     ├── TEMPLATE.md
     ├── exporters/
     │   ├── README.md
-    │   └── export_opencode.py
+    │   ├── export_opencode.py
+    │   └── export_claude_code.py
     ├── evals/
     │   ├── README.md
     │   ├── routing/
@@ -40,8 +43,9 @@ skills/
     │       ├── paper-replication-gold-task.md
     │       └── reproducibility-gold-task.md
     ├── exports/
-    │   └── opencode/
-    │       └── README.md
+    │   ├── opencode/
+    │   │   └── README.md
+    │   └── claude-code/
     ├── templates/
     │   ├── README.md
     │   ├── pennylane-qnn/
@@ -297,7 +301,14 @@ These fields are treated as source metadata and can be translated later into Ope
 
 - `exporters/README.md` — overview of export utilities
 - `exporters/export_opencode.py` — initial OpenCode exporter scaffold
+- `exporters/export_claude_code.py` — Claude Code exporter scaffold
 - `exports/opencode/README.md` — generated-output layout for OpenCode exports
+
+Claude Code compatibility at the repository level is anchored by:
+
+- root `CLAUDE.md`
+- `.claude/settings.json`
+- generated output under `exports/claude-code/`
 
 Current OpenCode exporter features:
 
