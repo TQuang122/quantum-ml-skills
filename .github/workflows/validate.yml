@@ -23,12 +23,27 @@ jobs:
         run: |
           python -m py_compile install/install_opencode.py
           python -m py_compile install/doctor_opencode.py
+          python -m py_compile install/install_claude_marketplace.py
+          python -m py_compile install/doctor_claude_marketplace.py
           python -m py_compile skills/qml/exporters/export_opencode.py
+          python -m py_compile skills/qml/exporters/export_claude_marketplace.py
 
       - name: Dry-run exporter
         run: |
           python skills/qml/exporters/export_opencode.py --dry-run
+          python skills/qml/exporters/export_claude_marketplace.py --dry-run
+          python skills/qml/exporters/export_claude_marketplace.py --sync-hosted-root --dry-run
 
       - name: Dry-run installer
         run: |
           python install/install_opencode.py --project-root . --dry-run
+          python install/install_claude_marketplace.py --project-root . --dry-run
+
+      - name: Regenerate Claude marketplace outputs
+        run: |
+          python skills/qml/exporters/export_claude_marketplace.py
+          python skills/qml/exporters/export_claude_marketplace.py --sync-hosted-root
+
+      - name: Verify generated Claude marketplace artifacts are committed
+        run: |
+          git diff --exit-code -- .claude-plugin plugins skills/qml/exports/claude-marketplace
