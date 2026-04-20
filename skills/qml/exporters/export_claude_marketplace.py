@@ -9,13 +9,13 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+REPO_ROOT = ROOT.parents[1]
 SKILLS_ROOT = ROOT
 EXPORT_ROOT = ROOT / "exports" / "claude-marketplace"
+HOSTED_ROOT = REPO_ROOT
 MARKETPLACE_NAME = "qml-skills"
 MARKETPLACE_VERSION = "0.1.1"
-MARKETPLACE_DESCRIPTION = (
-    "Local Claude Code marketplace for the Quantum ML skill library."
-)
+MARKETPLACE_DESCRIPTION = "Claude Code marketplace for the Quantum ML skill library."
 
 
 @dataclass(slots=True)
@@ -166,6 +166,21 @@ def reset_directory(path: Path) -> None:
     if path.exists():
         shutil.rmtree(path)
     path.mkdir(parents=True, exist_ok=True)
+
+
+def reset_hosted_root(path: Path, bundle_names: list[str]) -> None:
+    manifest_dir = path / ".claude-plugin"
+    if manifest_dir.exists():
+        shutil.rmtree(manifest_dir)
+
+    plugins_dir = path / "plugins"
+    for bundle_name in bundle_names:
+        bundle_dir = plugins_dir / bundle_name
+        if bundle_dir.exists():
+            shutil.rmtree(bundle_dir)
+
+    if plugins_dir.exists() and not any(plugins_dir.iterdir()):
+        plugins_dir.rmdir()
 
 
 def copy_if_exists(source: Path, target: Path) -> None:
@@ -324,6 +339,23 @@ def export_all(skills_root: Path, export_root: Path, dry_run: bool) -> ExportSum
     )
 
 
+def sync_hosted_root(
+    skills_root: Path, hosted_root: Path, dry_run: bool
+) -> ExportSummary:
+    if not dry_run:
+        reset_hosted_root(hosted_root, [bundle.name for bundle in PLUGIN_BUNDLES])
+
+    return export_selected(
+        bundles=list(PLUGIN_BUNDLES),
+        skills_root=skills_root,
+        export_root=hosted_root,
+        reset_output=False,
+        selected_plugin=None,
+        mode="sync-hosted-root",
+        dry_run=dry_run,
+    )
+
+
 def export_one(
     skills_root: Path, export_root: Path, plugin_name: str, dry_run: bool
 ) -> ExportSummary:
@@ -423,6 +455,17 @@ def build_parser() -> argparse.ArgumentParser:
         help="Install directly into a target Claude Code marketplace directory.",
     )
     parser.add_argument(
+        "--sync-hosted-root",
+        action="store_true",
+        help="Sync a GitHub-hosted marketplace layout into the repository root (.claude-plugin/ and plugins/).",
+    )
+    parser.add_argument(
+        "--hosted-root",
+        type=Path,
+        default=HOSTED_ROOT,
+        help="Repository root to receive the hosted marketplace layout when --sync-hosted-root is used.",
+    )
+    parser.add_argument(
         "--dry-run",
         action="store_true",
         help="Validate and report actions without writing output.",
@@ -434,7 +477,13 @@ def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
 
-    if args.install_to is not None:
+    if args.sync_hosted_root:
+        if args.install_to is not None:
+            parser.error("--sync-hosted-root cannot be combined with --install-to")
+        if args.plugin is not None:
+            parser.error("--sync-hosted-root currently exports all plugin bundles only")
+        summary = sync_hosted_root(args.source, args.hosted_root, args.dry_run)
+    elif args.install_to is not None:
         target_root = args.install_to
         if args.plugin is not None:
             summary = install_one(args.source, target_root, args.plugin, args.dry_run)

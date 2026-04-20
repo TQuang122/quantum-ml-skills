@@ -48,6 +48,7 @@ The current `export_claude_marketplace.py` supports:
 - export one plugin bundle with `--plugin <name>`
 - install all plugin bundles directly into a chosen local Claude marketplace path with `--install-to <path>`
 - install one plugin bundle with `--plugin <name> --install-to <path>`
+- sync all plugin bundles into the repository root for GitHub-hosted marketplace use with `--sync-hosted-root`
 - JSON summary output after execution
 
 ## Examples
@@ -77,6 +78,7 @@ python skills/qml/exporters/export_claude_marketplace.py
 python skills/qml/exporters/export_claude_marketplace.py --plugin qml-core
 python skills/qml/exporters/export_claude_marketplace.py --install-to .claude/marketplaces/qml-skills
 python skills/qml/exporters/export_claude_marketplace.py --plugin qml-research --install-to .claude/marketplaces/qml-skills
+python skills/qml/exporters/export_claude_marketplace.py --sync-hosted-root
 ```
 
 It does **not** yet implement all possible platform-specific metadata remapping.
