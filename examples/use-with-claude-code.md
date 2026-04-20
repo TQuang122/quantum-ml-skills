@@ -1,6 +1,6 @@
 # Claude Code Local Marketplace Usage
 
-This is the fastest way to use the repository with a local Claude Code marketplace.
+This is the fastest way to use the repository with a local Claude Code marketplace, and the same plugin bundles can also be published from this repo as a GitHub-hosted marketplace.
 
 ## Install the local marketplace
 
@@ -59,6 +59,22 @@ Then install the bundles you need:
 /plugin install qml-research@qml-skills
 ```
 
+Install bundles sequentially. Running multiple install commands in parallel can race on Claude Code's local plugin state.
+
+## Add the marketplace from GitHub
+
+After syncing the hosted marketplace view into the repository root and pushing it to GitHub, users can add the marketplace directly from the repo:
+
+```text
+/plugin marketplace add TQuang122/quantum-ml-skills
+```
+
+Optional sparse checkout for hosted usage:
+
+```text
+/plugin marketplace add TQuang122/quantum-ml-skills --sparse .claude-plugin plugins
+```
+
 ## Export without installing
 
 If you only want generated marketplace output in the repository:
@@ -67,10 +83,23 @@ If you only want generated marketplace output in the repository:
 python skills/qml/exporters/export_claude_marketplace.py
 ```
 
+To sync the hosted marketplace view into the repository root for GitHub hosting:
+
+```bash
+python skills/qml/exporters/export_claude_marketplace.py --sync-hosted-root
+```
+
 Generated output goes to:
 
 ```text
 skills/qml/exports/claude-marketplace/
+```
+
+Hosted marketplace sync writes to:
+
+```text
+.claude-plugin/
+plugins/
 ```
 
 ## Plugin bundle map

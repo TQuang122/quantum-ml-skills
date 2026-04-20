@@ -46,6 +46,7 @@ Claude Code support is provided through:
 
 - root `CLAUDE.md`
 - project `.claude/settings.json`
+- a GitHub-hosted marketplace view at repo root under `.claude-plugin/` and `plugins/`
 - generated exports under `skills/qml/exports/claude-code/`
 - a local plugin-style marketplace under `skills/qml/exports/claude-marketplace/`
 
@@ -61,10 +62,28 @@ To generate a local Claude marketplace:
 bash install/install_claude_marketplace.sh --project-root .
 ```
 
+To sync the GitHub-hosted marketplace view into the repository root:
+
+```bash
+python skills/qml/exporters/export_claude_marketplace.py --sync-hosted-root
+```
+
 Then add it inside Claude Code:
 
 ```text
 /plugin marketplace add ./.claude/marketplaces/qml-skills
+```
+
+To add this repository from GitHub after the root marketplace view is published:
+
+```text
+/plugin marketplace add TQuang122/quantum-ml-skills
+```
+
+For faster Git checkout of the hosted marketplace only:
+
+```text
+/plugin marketplace add TQuang122/quantum-ml-skills --sparse .claude-plugin plugins
 ```
 
 Recommended install order:
@@ -76,6 +95,8 @@ Recommended install order:
 /plugin install qml-evaluation@qml-skills
 /plugin install qml-research@qml-skills
 ```
+
+Install plugin bundles sequentially. Parallel install attempts can race on local Claude plugin state.
 
 The canonical source of truth remains:
 

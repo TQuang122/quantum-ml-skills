@@ -118,6 +118,23 @@ Recommended plugin bundles:
 
 This preserves a source-first model while creating a local install experience that feels close to marketplace usage inside Claude Code.
 
+### GitHub-hosted marketplace packaging
+
+For `owner/repo` marketplace add flows, Claude Code expects the marketplace root at the repository root. In this repo, that means syncing generated marketplace artifacts into:
+
+- `.claude-plugin/marketplace.json`
+- `plugins/`
+
+The source of truth still remains in `skills/qml/`, and the hosted root view must be generated, not edited by hand.
+
+Recommended hosted sync command:
+
+```bash
+python skills/qml/exporters/export_claude_marketplace.py --sync-hosted-root
+```
+
+This command should be re-run whenever the Claude marketplace export changes.
+
 ## Antigravity
 
 ### Target assumption
@@ -146,6 +163,8 @@ skills/qml/
     claude-code/
     claude-marketplace/
     antigravity/
+  .claude-plugin/
+  plugins/
 ```
 
 The current step does **not** implement exporters yet. It only prepares the source library to support them.

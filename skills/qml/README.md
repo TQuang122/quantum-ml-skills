@@ -10,6 +10,8 @@ That keeps the library versioned with the repo, easy to review, and easy to migr
 
 This directory remains the canonical source-of-truth for both OpenCode and Claude Code support.
 
+When publishing this repo as a GitHub-hosted Claude marketplace, the hosted view at repo root (`.claude-plugin/` and `plugins/`) is generated from this source library and should not be edited by hand.
+
 ## Recommended directory structure
 
 ```text
@@ -313,6 +315,7 @@ Claude Code compatibility at the repository level is anchored by:
 - `.claude/settings.json`
 - generated output under `exports/claude-code/`
 - generated local marketplace output under `exports/claude-marketplace/`
+- generated hosted marketplace output at repo root under `.claude-plugin/` and `plugins/`
 
 Current OpenCode exporter features:
 
