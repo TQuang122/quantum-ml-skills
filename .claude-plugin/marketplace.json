@@ -1,0 +1,41 @@
+{
+  "name": "qml-skills",
+  "owner": {
+    "name": "Quantum ML Skills"
+  },
+  "metadata": {
+    "description": "Claude Code marketplace for the Quantum ML skill library."
+  },
+  "plugins": [
+    {
+      "name": "qml-common",
+      "source": "./plugins/qml-common",
+      "description": "Shared QML foundations and routing skills for Claude Code.",
+      "version": "0.1.1"
+    },
+    {
+      "name": "qml-core",
+      "source": "./plugins/qml-core",
+      "description": "Core PennyLane and PyTorch implementation skills for Claude Code.",
+      "version": "0.1.1"
+    },
+    {
+      "name": "qml-backends",
+      "source": "./plugins/qml-backends",
+      "description": "Backend and Qiskit interop skills for Claude Code.",
+      "version": "0.1.1"
+    },
+    {
+      "name": "qml-evaluation",
+      "source": "./plugins/qml-evaluation",
+      "description": "Benchmarking and reproducibility skills for Claude Code.",
+      "version": "0.1.1"
+    },
+    {
+      "name": "qml-research",
+      "source": "./plugins/qml-research",
+      "description": "Research debugging and paper replication skills for Claude Code.",
+      "version": "0.1.1"
+    }
+  ]
+}
